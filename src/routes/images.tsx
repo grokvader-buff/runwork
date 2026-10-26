@@ -88,7 +88,15 @@ function Images() {
                 kind="image"
                 size="icon-sm"
                 title={it.prompt.slice(0, 60)}
-                getPayload={() => ({ prompt: it.prompt, path: it.path })}
+                getPayload={async () => {
+                  let src = it.src;
+                  if (it.path) {
+                    const { data, error } = await supabase.storage.from("images").createSignedUrl(it.path, 60 * 60 * 24 * 365);
+                    if (error) throw new Error(error.message);
+                    src = data.signedUrl;
+                  }
+                  return { prompt: it.prompt, src };
+                }}
               />
               <button aria-label="Delete" className="rounded-full p-2 text-muted-foreground hover:bg-secondary" onClick={async () => { await deleteImage(user, it).catch((e) => toast.error(e.message)); setItems((p) => p.filter((x) => x.id !== it.id)); }}>
                 <Trash2 className="size-4" />
@@ -101,4 +109,3 @@ function Images() {
   );
 }
 
-export { supabase };

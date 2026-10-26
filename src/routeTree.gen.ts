@@ -11,6 +11,8 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AgentsRouteImport } from './routes/agents'
+import { Route as ImagesRouteImport } from './routes/images'
+import { Route as JournalRouteImport } from './routes/journal'
 import { Route as ApiChatRouteImport } from './routes/api/chat'
 import { Route as ApiImageRouteImport } from './routes/api/image'
 import { Route as ApiReflectRouteImport } from './routes/api/reflect'
@@ -24,6 +26,16 @@ const IndexRoute = IndexRouteImport.update({
 const AgentsRoute = AgentsRouteImport.update({
   id: '/agents',
   path: '/agents',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ImagesRoute = ImagesRouteImport.update({
+  id: '/images',
+  path: '/images',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JournalRoute = JournalRouteImport.update({
+  id: '/journal',
+  path: '/journal',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiChatRoute = ApiChatRouteImport.update({
@@ -50,6 +62,8 @@ const ChatThreadIdRoute = ChatThreadIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/agents': typeof AgentsRoute
+  '/images': typeof ImagesRoute
+  '/journal': typeof JournalRoute
   '/api/chat': typeof ApiChatRoute
   '/api/image': typeof ApiImageRoute
   '/api/reflect': typeof ApiReflectRoute
@@ -58,6 +72,8 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/agents': typeof AgentsRoute
+  '/images': typeof ImagesRoute
+  '/journal': typeof JournalRoute
   '/api/chat': typeof ApiChatRoute
   '/api/image': typeof ApiImageRoute
   '/api/reflect': typeof ApiReflectRoute
@@ -67,6 +83,8 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/agents': typeof AgentsRoute
+  '/images': typeof ImagesRoute
+  '/journal': typeof JournalRoute
   '/api/chat': typeof ApiChatRoute
   '/api/image': typeof ApiImageRoute
   '/api/reflect': typeof ApiReflectRoute
@@ -77,6 +95,8 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/agents'
+    | '/images'
+    | '/journal'
     | '/api/chat'
     | '/api/image'
     | '/api/reflect'
@@ -85,6 +105,8 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/agents'
+    | '/images'
+    | '/journal'
     | '/api/chat'
     | '/api/image'
     | '/api/reflect'
@@ -93,6 +115,8 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/agents'
+    | '/images'
+    | '/journal'
     | '/api/chat'
     | '/api/image'
     | '/api/reflect'
@@ -102,6 +126,8 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AgentsRoute: typeof AgentsRoute
+  ImagesRoute: typeof ImagesRoute
+  JournalRoute: typeof JournalRoute
   ApiChatRoute: typeof ApiChatRoute
   ApiImageRoute: typeof ApiImageRoute
   ApiReflectRoute: typeof ApiReflectRoute
@@ -122,6 +148,20 @@ declare module '@tanstack/react-router' {
       path: '/agents'
       fullPath: '/agents'
       preLoaderRoute: typeof AgentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/images': {
+      id: '/images'
+      path: '/images'
+      fullPath: '/images'
+      preLoaderRoute: typeof ImagesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/journal': {
+      id: '/journal'
+      path: '/journal'
+      fullPath: '/journal'
+      preLoaderRoute: typeof JournalRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/chat': {
@@ -158,6 +198,8 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AgentsRoute: AgentsRoute,
+  ImagesRoute: ImagesRoute,
+  JournalRoute: JournalRoute,
   ApiChatRoute: ApiChatRoute,
   ApiImageRoute: ApiImageRoute,
   ApiReflectRoute: ApiReflectRoute,

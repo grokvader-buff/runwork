@@ -14,7 +14,7 @@ export function ShareButton({
 }: {
   kind: "chat" | "journal" | "image";
   title: string;
-  getPayload: () => unknown;
+  getPayload: () => unknown | Promise<unknown>;
   size?: "sm" | "icon-sm";
   label?: string;
 }) {
@@ -33,7 +33,7 @@ export function ShareButton({
         }
         setBusy(true);
         try {
-          const id = await createShare(user, kind, title, getPayload());
+          const id = await createShare(user, kind, title, await getPayload());
           const url = shareUrl(id);
           if (navigator.share) {
             await navigator.share({ title: `${title} · RunWork`, url }).catch(() => navigator.clipboard.writeText(url));
