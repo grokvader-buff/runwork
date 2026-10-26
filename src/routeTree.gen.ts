@@ -11,12 +11,16 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AgentsRouteImport } from './routes/agents'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as ConnectionsRouteImport } from './routes/connections'
 import { Route as ImagesRouteImport } from './routes/images'
 import { Route as JournalRouteImport } from './routes/journal'
+import { Route as UsageRouteImport } from './routes/usage'
 import { Route as ApiChatRouteImport } from './routes/api/chat'
 import { Route as ApiImageRouteImport } from './routes/api/image'
 import { Route as ApiReflectRouteImport } from './routes/api/reflect'
 import { Route as ChatThreadIdRouteImport } from './routes/chat.$threadId'
+import { Route as SIdRouteImport } from './routes/s.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -28,6 +32,16 @@ const AgentsRoute = AgentsRouteImport.update({
   path: '/agents',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConnectionsRoute = ConnectionsRouteImport.update({
+  id: '/connections',
+  path: '/connections',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ImagesRoute = ImagesRouteImport.update({
   id: '/images',
   path: '/images',
@@ -36,6 +50,11 @@ const ImagesRoute = ImagesRouteImport.update({
 const JournalRoute = JournalRouteImport.update({
   id: '/journal',
   path: '/journal',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UsageRoute = UsageRouteImport.update({
+  id: '/usage',
+  path: '/usage',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiChatRoute = ApiChatRouteImport.update({
@@ -58,80 +77,113 @@ const ChatThreadIdRoute = ChatThreadIdRouteImport.update({
   path: '/chat/$threadId',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SIdRoute = SIdRouteImport.update({
+  id: '/s/$id',
+  path: '/s/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/agents': typeof AgentsRoute
+  '/auth': typeof AuthRoute
+  '/connections': typeof ConnectionsRoute
   '/images': typeof ImagesRoute
   '/journal': typeof JournalRoute
+  '/usage': typeof UsageRoute
   '/api/chat': typeof ApiChatRoute
   '/api/image': typeof ApiImageRoute
   '/api/reflect': typeof ApiReflectRoute
   '/chat/$threadId': typeof ChatThreadIdRoute
+  '/s/$id': typeof SIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/agents': typeof AgentsRoute
+  '/auth': typeof AuthRoute
+  '/connections': typeof ConnectionsRoute
   '/images': typeof ImagesRoute
   '/journal': typeof JournalRoute
+  '/usage': typeof UsageRoute
   '/api/chat': typeof ApiChatRoute
   '/api/image': typeof ApiImageRoute
   '/api/reflect': typeof ApiReflectRoute
   '/chat/$threadId': typeof ChatThreadIdRoute
+  '/s/$id': typeof SIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/agents': typeof AgentsRoute
+  '/auth': typeof AuthRoute
+  '/connections': typeof ConnectionsRoute
   '/images': typeof ImagesRoute
   '/journal': typeof JournalRoute
+  '/usage': typeof UsageRoute
   '/api/chat': typeof ApiChatRoute
   '/api/image': typeof ApiImageRoute
   '/api/reflect': typeof ApiReflectRoute
   '/chat/$threadId': typeof ChatThreadIdRoute
+  '/s/$id': typeof SIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/agents'
+    | '/auth'
+    | '/connections'
     | '/images'
     | '/journal'
+    | '/usage'
     | '/api/chat'
     | '/api/image'
     | '/api/reflect'
     | '/chat/$threadId'
+    | '/s/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/agents'
+    | '/auth'
+    | '/connections'
     | '/images'
     | '/journal'
+    | '/usage'
     | '/api/chat'
     | '/api/image'
     | '/api/reflect'
     | '/chat/$threadId'
+    | '/s/$id'
   id:
     | '__root__'
     | '/'
     | '/agents'
+    | '/auth'
+    | '/connections'
     | '/images'
     | '/journal'
+    | '/usage'
     | '/api/chat'
     | '/api/image'
     | '/api/reflect'
     | '/chat/$threadId'
+    | '/s/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AgentsRoute: typeof AgentsRoute
+  AuthRoute: typeof AuthRoute
+  ConnectionsRoute: typeof ConnectionsRoute
   ImagesRoute: typeof ImagesRoute
   JournalRoute: typeof JournalRoute
+  UsageRoute: typeof UsageRoute
   ApiChatRoute: typeof ApiChatRoute
   ApiImageRoute: typeof ApiImageRoute
   ApiReflectRoute: typeof ApiReflectRoute
   ChatThreadIdRoute: typeof ChatThreadIdRoute
+  SIdRoute: typeof SIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -150,6 +202,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AgentsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/connections': {
+      id: '/connections'
+      path: '/connections'
+      fullPath: '/connections'
+      preLoaderRoute: typeof ConnectionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/images': {
       id: '/images'
       path: '/images'
@@ -162,6 +228,13 @@ declare module '@tanstack/react-router' {
       path: '/journal'
       fullPath: '/journal'
       preLoaderRoute: typeof JournalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/usage': {
+      id: '/usage'
+      path: '/usage'
+      fullPath: '/usage'
+      preLoaderRoute: typeof UsageRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/chat': {
@@ -192,18 +265,29 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ChatThreadIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/s/$id': {
+      id: '/s/$id'
+      path: '/s/$id'
+      fullPath: '/s/$id'
+      preLoaderRoute: typeof SIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AgentsRoute: AgentsRoute,
+  AuthRoute: AuthRoute,
+  ConnectionsRoute: ConnectionsRoute,
   ImagesRoute: ImagesRoute,
   JournalRoute: JournalRoute,
+  UsageRoute: UsageRoute,
   ApiChatRoute: ApiChatRoute,
   ApiImageRoute: ApiImageRoute,
   ApiReflectRoute: ApiReflectRoute,
   ChatThreadIdRoute: ChatThreadIdRoute,
+  SIdRoute: SIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
