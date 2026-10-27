@@ -1,14 +1,16 @@
-# Welcome to your Lovable project
+# Runwork
+
+Create an AI chat bot app that codes, writes, journals, generates images, and think for a very long time. Meet RunWork, easiest way to make tasks and work done, using models like Brain Zero powered by Gemini (hidden in model background), RunWork has its own built-in agent bots like Butler, this agent is accurate, smart, and efficient for everyday tasks, powered by hidden and built-in models inside the agent. Take all references as RunWork's functional pages, the crypto is like the usage tracker, make everything white, RunWork also has its own built-in flip clock that matches the current time in your country, RunWork's job is better with connections, share everything to your friends, thank you.
 
 This project was built with [Lovable](https://lovable.dev).
 
 ## Build with Lovable
 
-Open your project in the [Lovable editor](https://lovable.dev) and keep building.
+Continue developing this project in the [Lovable editor](https://lovable.dev/projects/fccf19fc-d163-45bd-962c-b09a952d7acd).
 
 - **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
-- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
+- **Stay in sync**: every change made in Lovable is committed straight to this repository.
+- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
 
 ## Development
 
@@ -20,10 +22,3 @@ cd <repository-name>
 npm i
 npm run dev
 ```
-
-## Built with
-
-- TanStack Start
-- TypeScript
-- React
-- Tailwind CSS
